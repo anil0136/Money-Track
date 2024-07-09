@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>Tracker Your Money</title>
+</head>
+
+<body style="background-color: #D2E0FB;">
+  <div class="container">
+    <div class="">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary" >
+        <div class="container-fluid" style="background-color: #8EACCD;">
+          <div class="collapse navbar-collapse"
+            style=" display: flex; align-items: center; justify-content: space-evenly; ">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/income">Income</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/expense">Expense</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        <div class="table">
+          <h2 class="mt-4">Income Transactions</h2>
+          <table class="table ">
+            <thead>
+              <tr>
+                <th scope="col">Index</th>
+                <th scope="col">Particular</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody >
+              <% if (transactions.length > 0) { %>
+                <% transactions.forEach((transaction, index) => { %>
+                  <tr>
+                    <th scope="row"><%= index + 1 %></th>
+                    <td><%= transaction.title %></td>
+                    <td><%= transaction.amount %></td>
+                    <td><%= transaction.createdAt.toLocaleDateString() %></td>
+                    <td style="display: flex;">
+                      <a href="/edit/<%= transaction.id %>" class="btn btn-primary">Edit</a>
+                      <form action="/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this transaction?')">
+                        <input type="hidden" name="transactionId" value="<%= transaction.id %>">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }); %>
+              <% } else { %>
+                <tr>
+                  <td colspan="4">No income transactions available.</td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+      
+      
+</body>
+
+</html>

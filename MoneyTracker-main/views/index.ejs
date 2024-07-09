@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Tracker Your Money</title>
+    <style>
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            border: none;
+            position: relative;
+            margin-bottom: 30px;
+            box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+        }
+
+        .l-bg-cherry {
+            background: linear-gradient(to right, #493240, #f09) !important;
+            color: #fff;
+        }
+
+        .l-bg-blue-dark {
+            background: linear-gradient(to right, #373b44, #4286f4) !important;
+            color: #fff;
+        }
+
+        .l-bg-green-dark {
+            background: linear-gradient(to right, #0a504a, #38ef7d) !important;
+            color: #fff;
+        }
+
+        .l-bg-orange-dark {
+            background: linear-gradient(to right, #a86008, #ffba56) !important;
+            color: #fff;
+        }
+
+        .card .card-statistic-3 .card-icon-large .fas,
+        .card .card-statistic-3 .card-icon-large .far,
+        .card .card-statistic-3 .card-icon-large .fab,
+        .card .card-statistic-3 .card-icon-large .fal {
+            font-size: 110px;
+        }
+
+        .card .card-statistic-3 .card-icon {
+            text-align: center;
+            line-height: 50px;
+            margin-left: 15px;
+            color: #000;
+            position: absolute;
+            right: -5px;
+            top: 20px;
+            opacity: 0.1;
+        }
+
+        .l-bg-cyan {
+            background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+            color: #fff;
+        }
+
+        .l-bg-green {
+            background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+            color: #fff;
+        }
+
+        .l-bg-orange {
+            background: linear-gradient(to right, #f9900e, #ffba56) !important;
+            color: #fff;
+        }
+
+        .l-bg-cyan {
+            background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body style="background-color: #D2E0FB;">
+    <div class="container">
+        <div class="">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #F9F3CC;">
+                <div class="container-fluid" style="background-color: #8EACCD;">
+                    <div class="collapse navbar-collapse"
+                        style=" display: flex; align-items: center; justify-content: space-evenly;">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/income">Income</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/expense">Expense</a>
+                            </li>
+                            
+                           
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col-4 ">
+                    <div class="card l-bg-cherry">
+                        <div class="card-statistic-3 p-3">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Expense</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                        <%= totalExpense %>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card l-bg-blue-dark">
+                        <div class="card-statistic-3 p-3">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-4">Income</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                        <%= totalIncome %>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card l-bg-green-dark">
+                        <div class="card-statistic-3 p-3">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Balance</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                        <%= balance %>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="delete-btn" style="display: flex; align-items: end;justify-content: end;" >
+                    <form action="/deleteAllTransactions" method="POST">
+                        <button type="submit" class="btn btn-danger">Delete All Transactions</button>
+                    </form>
+                </div>
+                <div class="outlet mt-4" style="display: flex; justify-content: center; align-items: center;">
+                    <div class="card col-11">
+                        <div class="card-header">
+                            <div class="card-title">Transaction</div>
+                        </div>
+                        <div class="card-body">
+                            <form action="/register" method="post">
+                                <div class="form-group">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            ENTRY
+                                        </button>
+                                        <div class="form-group">
+                                            <label for="entry">Entry:</label>
+                                            <input type="text" class="form-control" id="entry" name="entry" readonly>
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#" data-value="income">Income</a></li>
+                                            <li><a class="dropdown-item" href="#" data-value="expense">Expense</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Praticular" name="title"
+                                        id="title">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" placeholder="Amount" id="amount"
+                                        name="amount">
+                                </div>
+                                <button type="submit" class="btn btn-success">Done</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</body>
+</html>
+<script>
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    const entryField = document.getElementById('entry');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', function (event) {
+            event.preventDefault();
+            const value = item.getAttribute('data-value');
+            entryField.value = value;
+        });
+    });
+</script>
